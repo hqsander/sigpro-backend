@@ -1,7 +1,6 @@
 package com.gestaoprotese.sigpro.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,7 @@ public class Protese implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private BigInteger id;
+	private Integer id;
 	
 	private Integer situacao;
 	
@@ -44,7 +43,7 @@ public class Protese implements Serializable {
 	
 	public Protese() {}
 
-	public Protese(BigInteger id, Situacao situacao, Paciente paciente, Laboratorio laboratorio,
+	public Protese(Integer id, Situacao situacao, Paciente paciente, Laboratorio laboratorio,
 			CentroDeSaude centroDeSaude, String codRastreio, String observacao, Boolean totalSuperior,
 			Boolean totalInferior, Boolean parcialSuperior, Boolean parcialInferior) {
 		super();
@@ -61,11 +60,11 @@ public class Protese implements Serializable {
 		this.parcialInferior = parcialInferior;
 	}
 
-	public BigInteger getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

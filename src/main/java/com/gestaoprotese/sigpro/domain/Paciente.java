@@ -1,7 +1,6 @@
 package com.gestaoprotese.sigpro.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +19,7 @@ public class Paciente implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private BigInteger id;
+	private Integer id;
 	
 	private String nome;
 	private Date dataNascimento;
@@ -31,18 +30,18 @@ public class Paciente implements Serializable {
 	
 	public Paciente() {}
 
-	public Paciente(BigInteger id, String nome, Date dataNascimento) {
+	public Paciente(Integer id, String nome, Date dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 	}
 
-	public BigInteger getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

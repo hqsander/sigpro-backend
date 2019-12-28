@@ -1,7 +1,6 @@
 package com.gestaoprotese.sigpro.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class CentroDeSaude implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private BigInteger id;
+	private Integer id;
 	
 	private String nome;
 	
@@ -29,17 +28,17 @@ public class CentroDeSaude implements Serializable {
 	
 	public CentroDeSaude() {}
 
-	public CentroDeSaude(BigInteger id, String nome) {
+	public CentroDeSaude(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
 
-	public BigInteger getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
