@@ -1,6 +1,8 @@
 package com.gestaoprotese.sigpro.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import com.gestaoprotese.sigpro.domain.enums.Situacao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Protese implements Serializable {
@@ -18,8 +21,6 @@ public class Protese implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
-	private Integer situacao;
 	
 	@ManyToOne
 	@JoinColumn(name = "paciente_id")
@@ -41,14 +42,21 @@ public class Protese implements Serializable {
 	private Boolean parcialSuperior;
 	private Boolean parcialInferior;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "protese")
+	private List<Movimentacao> movimentacoes = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "solicitante_id")
+	private Usuario solicitante;
+	
 	public Protese() {}
 
-	public Protese(Integer id, Situacao situacao, Paciente paciente, Laboratorio laboratorio,
-			CentroDeSaude centroDeSaude, String codRastreio, String observacao, Boolean totalSuperior,
-			Boolean totalInferior, Boolean parcialSuperior, Boolean parcialInferior) {
+	public Protese(Integer id, Paciente paciente, Laboratorio laboratorio, CentroDeSaude centroDeSaude,
+			String codRastreio, String observacao, Boolean totalSuperior, Boolean totalInferior,
+			Boolean parcialSuperior, Boolean parcialInferior, Usuario solicitante) {
 		super();
 		this.id = id;
-		this.situacao = situacao.getCod();
 		this.paciente = paciente;
 		this.laboratorio = laboratorio;
 		this.centroDeSaude = centroDeSaude;
@@ -58,6 +66,7 @@ public class Protese implements Serializable {
 		this.totalInferior = totalInferior;
 		this.parcialSuperior = parcialSuperior;
 		this.parcialInferior = parcialInferior;
+		this.solicitante = solicitante;
 	}
 
 	public Integer getId() {
@@ -66,14 +75,6 @@ public class Protese implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Situacao getSituacao() {
-		return Situacao.toEnum(situacao);
-	}
-
-	public void setSituacao(Situacao situacao) {
-		this.situacao = situacao.getCod();
 	}
 
 	public Paciente getPaciente() {
@@ -146,6 +147,22 @@ public class Protese implements Serializable {
 
 	public void setParcialInferior(Boolean parcialInferior) {
 		this.parcialInferior = parcialInferior;
+	}
+
+	public List<Movimentacao> getMovimentacoes() {
+		return movimentacoes;
+	}
+
+	public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+		this.movimentacoes = movimentacoes;
+	}
+
+	public Usuario getSolicitante() {
+		return solicitante;
+	}
+
+	public void setSolicitante(Usuario solicitante) {
+		this.solicitante = solicitante;
 	}
 
 	@Override
