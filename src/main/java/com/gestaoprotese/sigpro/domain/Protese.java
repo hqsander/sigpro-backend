@@ -3,16 +3,35 @@ package com.gestaoprotese.sigpro.domain;
 import java.io.Serializable;
 import java.math.BigInteger;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import com.gestaoprotese.sigpro.domain.enums.Situacao;
 
+@Entity
 public class Protese implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private BigInteger id;
 	
 	private Integer situacao;
+	
+	@ManyToOne
+	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
+	
+	@ManyToOne
+	@JoinColumn(name = "laboratorio_id")
 	private Laboratorio laboratorio;
+	
+	@ManyToOne
+	@JoinColumn(name = "centroDeSaude_id")
 	private CentroDeSaude centroDeSaude;
 	
 	private String codRastreio;
