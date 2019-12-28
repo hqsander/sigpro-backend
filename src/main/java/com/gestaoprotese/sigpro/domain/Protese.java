@@ -36,13 +36,17 @@ public class Protese implements Serializable {
 	
 	private String codRastreio;
 	private String observacao;
-	private Boolean total;
-	private Boolean superior;
+	
+	private Boolean totalSuperior;
+	private Boolean totalInferior;
+	private Boolean parcialSuperior;
+	private Boolean parcialInferior;
 	
 	public Protese() {}
 
 	public Protese(BigInteger id, Situacao situacao, Paciente paciente, Laboratorio laboratorio,
-			CentroDeSaude centroDeSaude, String codRastreio, String observacao, Boolean total, Boolean superior) {
+			CentroDeSaude centroDeSaude, String codRastreio, String observacao, Boolean totalSuperior,
+			Boolean totalInferior, Boolean parcialSuperior, Boolean parcialInferior) {
 		super();
 		this.id = id;
 		this.situacao = situacao.getCod();
@@ -51,8 +55,10 @@ public class Protese implements Serializable {
 		this.centroDeSaude = centroDeSaude;
 		this.codRastreio = codRastreio;
 		this.observacao = observacao;
-		this.total = total;
-		this.superior = superior;
+		this.totalSuperior = totalSuperior;
+		this.totalInferior = totalInferior;
+		this.parcialSuperior = parcialSuperior;
+		this.parcialInferior = parcialInferior;
 	}
 
 	public BigInteger getId() {
@@ -111,20 +117,36 @@ public class Protese implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public Boolean getTotal() {
-		return total;
+	public Boolean getTotalSuperior() {
+		return totalSuperior;
 	}
 
-	public void setTotal(Boolean total) {
-		this.total = total;
+	public void setTotalSuperior(Boolean totalSuperior) {
+		this.totalSuperior = totalSuperior;
 	}
 
-	public Boolean getSuperior() {
-		return superior;
+	public Boolean getTotalInferior() {
+		return totalInferior;
 	}
 
-	public void setSuperior(Boolean superior) {
-		this.superior = superior;
+	public void setTotalInferior(Boolean totalInferior) {
+		this.totalInferior = totalInferior;
+	}
+
+	public Boolean getParcialSuperior() {
+		return parcialSuperior;
+	}
+
+	public void setParcialSuperior(Boolean parcialSuperior) {
+		this.parcialSuperior = parcialSuperior;
+	}
+
+	public Boolean getParcialInferior() {
+		return parcialInferior;
+	}
+
+	public void setParcialInferior(Boolean parcialInferior) {
+		this.parcialInferior = parcialInferior;
 	}
 
 	@Override
