@@ -79,7 +79,6 @@ public class SigproApplication implements CommandLineRunner{
 		
 		InstituicaoRepository.saveAll(Arrays.asList(csMarcelo, agape, regional));
 		usuarioRepository.saveAll(Arrays.asList(paula, henrique, regNordeste));
-		cleunita.getProteses().addAll(Arrays.asList(prot1));
 		pacienteRepository.saveAll(Arrays.asList(cleunita));
 		prot1.getMovimentacoes().addAll(Arrays.asList(mov01, mov02, mov03, mov04, mov05, mov06, mov07, mov08, mov09, mov10, mov11, mov12, mov13, mov14, mov15, mov16));
 		proteseRepository.saveAll(Arrays.asList(prot1));
