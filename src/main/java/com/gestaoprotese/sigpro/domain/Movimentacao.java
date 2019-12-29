@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gestaoprotese.sigpro.domain.enums.Situacao;
 
 @Entity
@@ -28,6 +29,7 @@ public class Movimentacao implements Serializable {
 	@JoinColumn(name = "responsavel_id")
 	private Usuario responsavel;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "protese_id")
 	private Protese protese;

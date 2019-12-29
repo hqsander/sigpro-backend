@@ -42,7 +42,6 @@ public class Protese implements Serializable {
 	private Boolean parcialSuperior;
 	private Boolean parcialInferior;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "protese")
 	private List<Movimentacao> movimentacoes = new ArrayList<>();
 	

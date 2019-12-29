@@ -2,12 +2,11 @@ package com.gestaoprotese.sigpro.domain.enums;
 
 public enum Situacao {
 	MODELO_DE_GESSO(1, "Modelo de Gesso"),
-	CHAPA_DE_PROVA(2, "Chapa de Prova"),
-	PLANO_DE_CERA(3, "Plano de Cera"),
-	MONTAGEM_DOS_DENTES(4, "Montagem dos Dentes"),
-	PROTESE_PRENSADA(5, "Protese Prensada"),
-	ABANDONO(6, "Abandono"),
-	ATESTAMENTO(7, "Atestamento");
+	PLANO_DE_CERA(2, "Plano de Cera"),
+	MONTAGEM_DOS_DENTES(3, "Montagem dos Dentes"),
+	PROTESE_PRENSADA(4, "Protese Prensada"),
+	ABANDONO(5, "Abandono"),
+	ATESTAMENTO(6, "Atestamento");
 	
 	private int cod;
 	private String descricao;
