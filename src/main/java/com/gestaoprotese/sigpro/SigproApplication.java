@@ -58,80 +58,31 @@ public class SigproApplication implements CommandLineRunner{
 		
 		Paciente cleunita = new Paciente(null, "Cleunita Lúcia Martins Tassara", dataSdf.parse("11/05/1962"));
 		
-		Protese prot1 = new Protese(null, cleunita, "VKO 4632", "CPP 01.02", false, false, true, true, paula);
+		Protese prot1 = new Protese(null, cleunita, "VKO 4632", "CPP 01.02", false, false, true, true, paula, agape);
 		
-		Movimentacao mov1 = new Movimentacao(null, dataHoraSdf.parse("22/08/19 09:00"), Situacao.MODELO_DE_GESSO, csMarcelo, regional, prot1);
+		Movimentacao mov01 = new Movimentacao(null, dataHoraSdf.parse("22/08/2019 09:00"), Situacao.MODELO_DE_GESSO, csMarcelo, regional, prot1);
+		Movimentacao mov02 = new Movimentacao(null, dataHoraSdf.parse("23/08/2019 09:00"), Situacao.MODELO_DE_GESSO, regional, agape, prot1);
+		Movimentacao mov03 = new Movimentacao(null, dataHoraSdf.parse("01/10/2019 09:00"), Situacao.PLANO_DE_CERA, agape, regional, prot1);
+		Movimentacao mov04 = new Movimentacao(null, dataHoraSdf.parse("02/10/2019 09:00"), Situacao.PLANO_DE_CERA, regional, csMarcelo, prot1);
+		Movimentacao mov05 = new Movimentacao(null, dataHoraSdf.parse("01/11/2019 09:00"), Situacao.PLANO_DE_CERA, csMarcelo, regional, prot1);
+		Movimentacao mov06 = new Movimentacao(null, dataHoraSdf.parse("02/11/2019 09:00"), Situacao.PLANO_DE_CERA, regional, agape, prot1);
+		Movimentacao mov07 = new Movimentacao(null, dataHoraSdf.parse("09/12/2019 09:00"), Situacao.MONTAGEM_DOS_DENTES, agape, regional, prot1);
+		Movimentacao mov08 = new Movimentacao(null, dataHoraSdf.parse("10/12/2019 09:00"), Situacao.MONTAGEM_DOS_DENTES, regional, csMarcelo, prot1);
+		Movimentacao mov09 = new Movimentacao(null, dataHoraSdf.parse("02/01/2019 09:00"), Situacao.MONTAGEM_DOS_DENTES, csMarcelo, regional, prot1);
+		Movimentacao mov10 = new Movimentacao(null, dataHoraSdf.parse("03/01/2019 09:00"), Situacao.MONTAGEM_DOS_DENTES, regional, agape, prot1);
+		Movimentacao mov11 = new Movimentacao(null, dataHoraSdf.parse("01/02/2019 09:00"), Situacao.PROTESE_PRENSADA, agape, regional, prot1);
+		Movimentacao mov12 = new Movimentacao(null, dataHoraSdf.parse("02/02/2019 09:00"), Situacao.PROTESE_PRENSADA, regional, csMarcelo, prot1);
+		Movimentacao mov13 = new Movimentacao(null, dataHoraSdf.parse("04/02/2019 09:00"), Situacao.ATESTAMENTO, agape, regional, prot1);
+		Movimentacao mov14 = new Movimentacao(null, dataHoraSdf.parse("05/02/2019 09:00"), Situacao.ATESTAMENTO, regional, csMarcelo, prot1);
+		Movimentacao mov15 = new Movimentacao(null, dataHoraSdf.parse("07/02/2019 09:00"), Situacao.ATESTAMENTO, csMarcelo, regional, prot1);
+		Movimentacao mov16 = new Movimentacao(null, dataHoraSdf.parse("08/02/2019 09:00"), Situacao.ATESTAMENTO, regional, agape, prot1);
 		
 		InstituicaoRepository.saveAll(Arrays.asList(csMarcelo, agape, regional));
 		usuarioRepository.saveAll(Arrays.asList(paula, henrique, regNordeste));
 		cleunita.getProteses().addAll(Arrays.asList(prot1));
 		pacienteRepository.saveAll(Arrays.asList(cleunita));
-		prot1.getMovimentacoes().addAll(Arrays.asList(mov1));
+		prot1.getMovimentacoes().addAll(Arrays.asList(mov01, mov02, mov03, mov04, mov05, mov06, mov07, mov08, mov09, mov10, mov11, mov12, mov13, mov14, mov15, mov16));
 		proteseRepository.saveAll(Arrays.asList(prot1));
-		movimentacaoRepository.saveAll(Arrays.asList(mov1));
-		
-//		Instituicao csMarcelo = new Instituicao(null, "CS Marcelo Pontel", TipoInstituicao.CENTRO_DE_SAUDE);
-//		Instituicao agape = new Instituicao(null, "Laboratório Ágape", TipoInstituicao.LABORATORIO);
-//		
-//		Paciente cleunita = new Paciente(null, "Cleunita Lúcia Martins Tassara", dataSdf.parse("11/05/1962"));
-//		Paciente maria = new Paciente(null, "Maria Carmelita Ferreira da Rocha", dataSdf.parse("01/05/1951"));
-//		
-//		Usuario paula = new Usuario(null, "Paula Molina", csMarcelo);
-//		Usuario henrique = new Usuario(null, "Henrique Fernandes", agape);
-//		
-//		Protese prot1 = new Protese(null, cleunita, "VKO 4632", "CPP 01.02", false, false, true, true, paula);
-//		Protese prot2 = new Protese(null, maria, "EIK 9865", "CPP 02.02", true, true, false, false, paula);
-//
-//		Movimentacao mov1 = new Movimentacao(null, dataHoraSdf.parse("15/06/2019 15:30"), Situacao.MODELO_DE_GESSO, Situacao.PLANO_DE_CERA, henrique, prot1);
-//		
-//		prot1.getMovimentacoes().addAll(Arrays.asList(mov1));
-//		
-//		cleunita.getProteses().addAll(Arrays.asList(prot1));
-//		maria.getProteses().addAll(Arrays.asList(prot2));
-//		
-//		InstituicaoRepository.saveAll(Arrays.asList(csMarcelo, agape));
-//		
-//		pacienteRepository.saveAll(Arrays.asList(cleunita, maria));
-//		
-//		usuarioRepository.saveAll(Arrays.asList(paula, henrique));
-//		
-//		proteseRepository.saveAll(Arrays.asList(prot1, prot2));
-//		
-//		movimentacaoRepository.saveAll(Arrays.asList(mov1));
-		/*
-			cleunita
-
-			paula envia modelo de gesso para regional 22/08
-			regional recebe modelo de gesso 23/08
-			laboratório recebe modelo de gesso 24/08
-			
-			laboratorio envia plano de cera para regional 01/10
-			regional recebe 02/10
-			paula recebe 03/10
-			
-			paula envia plano de cera para regional 01/11
-			regional recebe 02/11
-			laboratório recebe 03/11
-			
-			laboratorio envia montagem dos dentes para regional 09/12
-			regional recebe montagem dos dentes 10/12
-			paula recebe montagem dos dentes 11/12
-			
-			paula envia montagem dos dentes para regional 02/01
-			regional recebe 03/01
-			lab recebe 04/01
-			
-			lab envia protese prensada 01/02
-			regional recebe 02/02
-			paula recebe 03/02
-			
-			lab envia atestamento 04/02
-			regional recebe 05/02
-			paula recebe 06/02
-			
-			paula envia atestamento 07/02
-			reg recebe 08/02
-			lab recebe 09/02
-		 */
+		movimentacaoRepository.saveAll(Arrays.asList(mov01, mov02, mov03, mov04, mov05, mov06, mov07, mov08, mov09, mov10, mov11, mov12, mov13, mov14, mov15, mov16));
 	}
 }

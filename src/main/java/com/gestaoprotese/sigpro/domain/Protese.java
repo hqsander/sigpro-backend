@@ -25,6 +25,10 @@ public class Protese implements Serializable {
 	private Usuario solicitante;
 	
 	@ManyToOne
+	@JoinColumn(name = "laboratorio_id")
+	private Instituicao laboratorio;
+	
+	@ManyToOne
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
 	
@@ -41,8 +45,8 @@ public class Protese implements Serializable {
 	
 	public Protese() {}
 
-	public Protese(Integer id, Paciente paciente, String codRastreio, String observacao,
-			Boolean totalSuperior, Boolean totalInferior, Boolean parcialSuperior, Boolean parcialInferior, Usuario solicitante) {
+	public Protese(Integer id, Paciente paciente, String codRastreio, String observacao, Boolean totalSuperior, 
+			Boolean totalInferior, Boolean parcialSuperior, Boolean parcialInferior, Usuario solicitante, Instituicao laboratorio) {
 		super();
 		this.id = id;
 		this.paciente = paciente;
@@ -53,6 +57,7 @@ public class Protese implements Serializable {
 		this.parcialSuperior = parcialSuperior;
 		this.parcialInferior = parcialInferior;
 		this.solicitante = solicitante;
+		this.laboratorio = laboratorio;
 	}
 
 	public Integer getId() {
@@ -133,6 +138,14 @@ public class Protese implements Serializable {
 
 	public void setSolicitante(Usuario solicitante) {
 		this.solicitante = solicitante;
+	}
+
+	public Instituicao getLaboratorio() {
+		return laboratorio;
+	}
+
+	public void setLaboratorio(Instituicao laboratorio) {
+		this.laboratorio = laboratorio;
 	}
 
 	@Override
