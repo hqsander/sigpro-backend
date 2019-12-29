@@ -25,12 +25,15 @@ public class Movimentacao implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataMovimentacao;
 	
-	private Integer situacaoOrigem;
-	private Integer situacaoDestino;
+	private Integer situacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "responsavel_id")
-	private Usuario responsavel;
+	@JoinColumn(name = "remetente_id")
+	private Instituicao remetente;
+	
+	@ManyToOne
+	@JoinColumn(name = "destinatario_id")
+	private Instituicao destinatario;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -39,15 +42,15 @@ public class Movimentacao implements Serializable {
 
 	public Movimentacao() {}
 	
-	public Movimentacao(Integer id, Date dataMovimentacao, Situacao situacaoOrigem, Situacao situacaoDestino,
-			Usuario responsavel, Protese protese) {
+	public Movimentacao(Integer id, Date dataMovimentacao, Situacao situacao,
+			Instituicao remetente, Instituicao destinatario, Protese protese) {
 		super();
 		this.id = id;
 		this.dataMovimentacao = dataMovimentacao;
-		this.situacaoOrigem = situacaoOrigem.getCod();
-		this.situacaoDestino = situacaoDestino.getCod();
-		this.responsavel = responsavel;
+		this.situacao = situacao.getCod();
 		this.protese = protese;
+		this.remetente = remetente;
+		this.destinatario = destinatario;
 	}
 
 	public Integer getId() {
@@ -66,28 +69,12 @@ public class Movimentacao implements Serializable {
 		this.dataMovimentacao = dataMovimentacao;
 	}
 
-	public Situacao getSituacaoOrigem() {
-		return Situacao.toEnum(situacaoOrigem);
+	public Situacao getSituacao() {
+		return Situacao.toEnum(situacao);
 	}
 
-	public void setSituacaoOrigem(Situacao situacaoOrigem) {
-		this.situacaoOrigem = situacaoOrigem.getCod();
-	}
-
-	public Situacao getSituacaoDestino() {
-		return Situacao.toEnum(situacaoDestino);
-	}
-
-	public void setSituacaoDestino(Situacao situacaoDestino) {
-		this.situacaoDestino = situacaoDestino.getCod();
-	}
-
-	public Usuario getResponsavel() {
-		return responsavel;
-	}
-
-	public void setResponsavel(Usuario responsavel) {
-		this.responsavel = responsavel;
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao.getCod();
 	}
 
 	public Protese getProtese() {
@@ -96,6 +83,22 @@ public class Movimentacao implements Serializable {
 
 	public void setProtese(Protese protese) {
 		this.protese = protese;
+	}
+
+	public Instituicao getRemetente() {
+		return remetente;
+	}
+
+	public void setRemetente(Instituicao remetente) {
+		this.remetente = remetente;
+	}
+
+	public Instituicao getDestinatario() {
+		return destinatario;
+	}
+
+	public void setDestinatario(Instituicao destinatario) {
+		this.destinatario = destinatario;
 	}
 
 	@Override

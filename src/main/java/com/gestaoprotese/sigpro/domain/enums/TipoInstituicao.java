@@ -2,7 +2,8 @@ package com.gestaoprotese.sigpro.domain.enums;
 
 public enum TipoInstituicao {
 	CENTRO_DE_SAUDE(1, "Centro de Saúde"),
-	LABORATORIO(2, "Laboratório");
+	LABORATORIO(2, "Laboratório"),
+	REGIONAL(3, "Regional");
 	
 	private int cod;
 	private String descricao;
