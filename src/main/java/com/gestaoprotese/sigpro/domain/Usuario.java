@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Usuario implements Serializable {
@@ -17,12 +19,17 @@ public class Usuario implements Serializable {
 	
 	private String nome;
 	
+	@ManyToOne
+	@JoinColumn(name = "instituicao_id")
+	private Instituicao instituicao;
+	
 	public Usuario() {}
 
-	public Usuario(Integer id, String nome) {
+	public Usuario(Integer id, String nome, Instituicao instituicao) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.setInstituicao(instituicao);
 	}
 
 	public Integer getId() {
@@ -39,6 +46,14 @@ public class Usuario implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Instituicao getInstituicao() {
+		return instituicao;
+	}
+
+	public void setInstituicao(Instituicao instituicao) {
+		this.instituicao = instituicao;
 	}
 
 	@Override

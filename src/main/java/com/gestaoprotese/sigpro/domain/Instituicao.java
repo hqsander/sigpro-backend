@@ -11,27 +11,29 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gestaoprotese.sigpro.domain.enums.TipoInstituicao;
 
 @Entity
-public class Laboratorio implements Serializable {
+public class Instituicao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
 	private String nome;
+	private Integer tipo;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "laboratorio")
-	private List<Protese> proteses = new ArrayList<>();
+	@OneToMany(mappedBy = "instituicao")
+	private List<Usuario> usuarios = new ArrayList<>();
 	
-	public Laboratorio() {}
+	public Instituicao() {}
 
-	public Laboratorio(Integer id, String nome) {
+	public Instituicao(Integer id, String nome, TipoInstituicao tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.tipo = tipo.getCod();
 	}
 
 	public Integer getId() {
@@ -50,12 +52,20 @@ public class Laboratorio implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Protese> getProteses() {
-		return proteses;
+	public TipoInstituicao getTipo() {
+		return TipoInstituicao.toEnum(tipo);
 	}
 
-	public void setProteses(List<Protese> proteses) {
-		this.proteses = proteses;
+	public void setTipo(TipoInstituicao tipo) {
+		this.tipo = tipo.getCod();
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@Override
@@ -74,7 +84,7 @@ public class Laboratorio implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Laboratorio other = (Laboratorio) obj;
+		Instituicao other = (Instituicao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

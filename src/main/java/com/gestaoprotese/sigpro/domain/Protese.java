@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Protese implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,42 +21,31 @@ public class Protese implements Serializable {
 	private Integer id;
 	
 	@ManyToOne
+	@JoinColumn(name = "solicitante_id")
+	private Usuario solicitante;
+	
+	@ManyToOne
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
-	
-	@ManyToOne
-	@JoinColumn(name = "laboratorio_id")
-	private Laboratorio laboratorio;
-	
-	@ManyToOne
-	@JoinColumn(name = "centroDeSaude_id")
-	private CentroDeSaude centroDeSaude;
-	
-	private String codRastreio;
-	private String observacao;
 	
 	private Boolean totalSuperior;
 	private Boolean totalInferior;
 	private Boolean parcialSuperior;
 	private Boolean parcialInferior;
 	
+	private String codRastreio;
+	private String observacao;
+	
 	@OneToMany(mappedBy = "protese")
 	private List<Movimentacao> movimentacoes = new ArrayList<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "solicitante_id")
-	private Usuario solicitante;
-	
 	public Protese() {}
 
-	public Protese(Integer id, Paciente paciente, Laboratorio laboratorio, CentroDeSaude centroDeSaude,
-			String codRastreio, String observacao, Boolean totalSuperior, Boolean totalInferior,
-			Boolean parcialSuperior, Boolean parcialInferior, Usuario solicitante) {
+	public Protese(Integer id, Paciente paciente, String codRastreio, String observacao,
+			Boolean totalSuperior, Boolean totalInferior, Boolean parcialSuperior, Boolean parcialInferior, Usuario solicitante) {
 		super();
 		this.id = id;
 		this.paciente = paciente;
-		this.laboratorio = laboratorio;
-		this.centroDeSaude = centroDeSaude;
 		this.codRastreio = codRastreio;
 		this.observacao = observacao;
 		this.totalSuperior = totalSuperior;
@@ -82,22 +69,6 @@ public class Protese implements Serializable {
 
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
-	}
-
-	public Laboratorio getLaboratorio() {
-		return laboratorio;
-	}
-
-	public void setLaboratorio(Laboratorio laboratorio) {
-		this.laboratorio = laboratorio;
-	}
-
-	public CentroDeSaude getCentroDeSaude() {
-		return centroDeSaude;
-	}
-
-	public void setCentroDeSaude(CentroDeSaude centroDeSaude) {
-		this.centroDeSaude = centroDeSaude;
 	}
 
 	public String getCodRastreio() {

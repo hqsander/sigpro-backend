@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gestaoprotese.sigpro.domain.enums.Situacao;
 
@@ -21,7 +22,9 @@ public class Movimentacao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataMovimentacao;
+	
 	private Integer situacaoOrigem;
 	private Integer situacaoDestino;
 	
