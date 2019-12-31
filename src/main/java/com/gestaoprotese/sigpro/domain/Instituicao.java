@@ -34,7 +34,7 @@ public class Instituicao implements Serializable {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.tipo = tipo.getCod();
+		this.tipo = (tipo == null) ? null : tipo.getCod();
 	}
 
 	public Integer getId() {
