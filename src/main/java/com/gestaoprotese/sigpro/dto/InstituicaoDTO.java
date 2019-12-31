@@ -5,6 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.gestaoprotese.sigpro.domain.Instituicao;
+import com.gestaoprotese.sigpro.domain.enums.TipoInstituicao;
 
 public class InstituicaoDTO {
 	
@@ -40,12 +41,12 @@ public class InstituicaoDTO {
 		this.nome = nome;
 	}
 
-	public Integer getTipo() {
-		return tipo;
+	public TipoInstituicao getTipo() {
+		return TipoInstituicao.toEnum(tipo);
 	}
 
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
+	public void setTipo(TipoInstituicao tipo) {
+		this.tipo = tipo.getCod();
 	}
 	
 }
