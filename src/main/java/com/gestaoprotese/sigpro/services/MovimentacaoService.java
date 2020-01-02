@@ -5,6 +5,10 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.gestaoprotese.sigpro.domain.Instituicao;
@@ -13,6 +17,7 @@ import com.gestaoprotese.sigpro.domain.Protese;
 import com.gestaoprotese.sigpro.dto.MovimentacaoDTO;
 import com.gestaoprotese.sigpro.repositories.MovimentacaoRepository;
 import com.gestaoprotese.sigpro.repositories.ProteseRepository;
+import com.gestaoprotese.sigpro.services.exceptions.DataIntegrityException;
 import com.gestaoprotese.sigpro.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -37,6 +42,26 @@ public class MovimentacaoService {
 		return repo.save(obj);
 	}
 	
+	public Movimentacao update(Movimentacao obj) {
+		Movimentacao newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir movimentações com vínculos.");
+		}
+	}
+	
+	public Page<Movimentacao> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
+	}
+	
 	public Movimentacao fromDTO(MovimentacaoDTO objDto) {
 		Protese protese;
 		try {
@@ -53,5 +78,13 @@ public class MovimentacaoService {
 				new Instituicao(objDto.getRemetenteId(), null, null),
 				new Instituicao(objDto.getDestinatarioId(), null, null),
 				protese);
+	}
+	
+	private void updateData(Movimentacao newObj, Movimentacao obj) {
+		newObj.setDataMovimentacao(obj.getDataMovimentacao());
+		newObj.setSituacao(obj.getSituacao());
+		newObj.setRemetente(obj.getRemetente());
+		newObj.setDestinatario(obj.getDestinatario());
+		newObj.setProtese(obj.getProtese());
 	}
 }
